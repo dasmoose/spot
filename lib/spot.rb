@@ -24,6 +24,7 @@ module Spot
         return start          if command == 'start'
         return help           if command == 'help'
         return current        if command == 'current'
+        return status         if command == 'status'
 
         output "Command, #{command} not found"
         help
@@ -83,6 +84,10 @@ module Spot
 
       def current
         output "#{colorize("Spotify", :red)} is now playing #{colorize(Spotify::Control.current_track, :yellow)} by #{colorize(Spotify::Control.current_artist, :cyan)} on #{colorize(Spotify::Control.current_album, :magenta)}"
+      end
+
+      def status
+        output "#{colorize("Spotify", :red)} is currently #{colorize(Spotify::Control.status, :yellow)}"
       end
 
       def help
